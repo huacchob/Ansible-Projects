@@ -1,0 +1,23 @@
+---
+
+- name: Install and run apache on CentOS
+  hosts: servers
+  become: true
+
+  tasks:
+
+  - name: Install apache2 package
+    yum:
+      name: httpd
+      state: latest
+
+  - name: Check to see if apache2 was installed
+    yum:
+      name: httpd
+      state: present
+
+  - name: start and run httpd
+    service:
+      name: httpd
+      state: started
+      enabled: true
